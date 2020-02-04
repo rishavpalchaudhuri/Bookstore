@@ -1,21 +1,23 @@
 version: '3.7'
 
-services: 
+services:
     web:
         build: .
         command: python /code/manage.py runserver 0.0.0.0:8000
-        volumes: 
+        environment:
+            - SECRET_KEY=oyno(j4gp4qk8h=h4(-^kayx9r$$=ql3i&-z8nog=76awu-60gv
+        volumes:
             - .:/code
-        ports: 
+        ports:
             - 8000:8000
-        depends_on: 
+        depends_on:
             - db
+    
     db:
         image: postgres:11
-        volumes: 
+        volumes:
             - postgres_data:/var/lib/postgresql/data/
 
-volumes: 
+volumes:
     postgres_data:
-
 
